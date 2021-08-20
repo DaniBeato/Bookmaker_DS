@@ -26,4 +26,13 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////'+os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')
     db.init_app(app)
 
+    import main.resources as resources
+    api.add_resource(resources.ClientsResource, '/clients')
+    api.add_resource(resources.ClientResource, '/client/<id>')
+    api.add_resource(resources.EmpresasResource, '/empresas')
+    api.add_resource(resources.EmpresaResource, '/empresa/<id>')
+    api.add_resource(resources.EquiposResource, '/equipos')
+    api.add_resource(resources.EquipoResource, '/equipo/<id>')
+    api.init_app(app)
+
     return app
