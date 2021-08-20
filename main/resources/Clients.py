@@ -3,6 +3,7 @@ from flask import request
 from .. import db
 from main.models import ClientModels
 from main.map import ClientSchema
+from main.map import ClienteFiltros
 
 
 
@@ -14,15 +15,10 @@ class Clients(Resource):
     def get(self):
         filtros = request.data
         clients = db.session.query(ClientModels)
-        if filtros:
-            for clave, valor in request.get_json().items():
-                if clave == 'nombre':
-                    clients = clients.filter(ClientModels.nombre == valor)
-                if clave == 'apellido':
-                    clients = clients.filter(ClientModels.apellido == valor)
-                if clave == 'email':
-                    clients = clients.filter(ClientModels.apellido == valor)
-        return client_schema.dump(clients.all(), many = True)
+        client_filter = ClienteFiltros(clients)
+        for key, value in request.get_json().items():
+            consulta = client_filter.aplicar_filtro(key, value)
+        return client_schema.dump(consulta.all(), many = True)
 
     def post(self):
         client = client_schema.load(request.get_json())
