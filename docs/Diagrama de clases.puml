@@ -24,6 +24,7 @@ class Apuesta {
     - id
     - monto
     - monto_minimo
+    - equipo_seleccionado
 }
 
 class Partido {
