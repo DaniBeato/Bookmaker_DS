@@ -1,20 +1,27 @@
 @startuml
 actor Cliente
-boundary ApuestasResource
+boundary ApuestaResource
 participant PartidoSchema
-participant PartidosModel
+participant ApuestaSchema
+participant PartidoModel
+participant ApuestaModel
 database data
 
-Cliente --> ApuestasResource: get all
-ApuestasResource --> PartidosModel: get all(finalizado = false)
-PartidosModel --> data: select all
-PartidosModel <-- data: registrs partidos finalizados
-PartidosModel --> PartidoSchema: dump many = true
-PartidoSchema --> ApuestasResource: colección en Json
-ApuestasResource --> Cliente
+Cliente --> ApuestaResource: get all
+ApuestaResource --> PartidoModel: get all(finalizado = false)
+PartidoModel --> data: select all
+PartidoModel <-- data: registrs partidos finalizados
+PartidoModel --> PartidoSchema: dump many = true
+PartidoSchema --> ApuestaResource: colección en Json
+ApuestaResource --> Cliente
 
-Cliente --> ApuestasResource: post
-
+Cliente --> ApuestaResource: post
+ApuestaResource --> ApuestaModel: Guardar apuesta
+ApuestaModel --> data: Insert
+data <-- ApuestaModel: Object
+ApuestaModel --> ApuestaSchema: Dump Object
+ApuestaSchema --> ApuestaResource: Json
+ApuestaResource --> Cliente
 
 
 @enduml
