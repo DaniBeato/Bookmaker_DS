@@ -4,15 +4,18 @@ from DateTime import datetime
 
 
 class Partido(db.Model):
-    __id = db.Column('id', db.Integer, primary_key = True)
-    __fecha = db.Column('nombre', db.DateTime, nullable = False)
-    __equipo_local = db.Column('equipo_local', db.ForeignKey('equipo.id'), nullable=True)
-    __equipo_visitante = db.Column('equipo_visitante', db.ForeignKey('equipo.id'), nullable=True)
-    __finalizado = db.Column('finalizado', db.boolean)
-    __ganador = db.Column('ganador', db.String(100), nullable=True)
-    __goles_local = db.Column('goles_local', db.Integer, nullable=True)
-    __goles_visitante = db.Column('goles_visitante', db.Integer, nullable=True)
-    cuota = db.relationship("Cuota", backpopulates = "partido", uselist = False)
+    __tablename__ = "partidos"
+    __id = db.Column('id', db.Integer, primary_key=True)
+    __fecha = db.Column('fecha', db.DateTime, nullable=False)
+    __equipo_local = db.Column('equipo_local', db.ForeignKey('equipos.id'), nullable=False)
+    __equipo_visitante = db.Column('equipo_visitante', db.ForeignKey('equipos.id'), nullable=False)
+    __finalizado = db.Column('finalizado', db.Boolean)
+    __ganador = db.Column('ganador', db.String(50))
+    __goles_local = db.Column('goles_local', db.Integer, nullable=False)
+    __goles_visitante = db.Column('goles_visitante', db.Integer, nullable=False)
+    cuota = db.relationship('Cuota', back_populates='partido', uselist=False)
+
+
     def __repr__(self):
         return f'< Cliente:  {self.__id} {self.__fecha} {self.__equipo_local}>'
 

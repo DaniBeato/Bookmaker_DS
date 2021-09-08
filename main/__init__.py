@@ -21,8 +21,9 @@ def create_app():
     if not os.path.exists(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')):
         os.mknod(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME'))
 
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+    app.config['SQLALCHEMY_ECHO'] = True
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////'+os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')
     db.init_app(app)
 
@@ -33,6 +34,7 @@ def create_app():
     api.add_resource(resources.EmpresaResource, '/empresa/<id>')
     api.add_resource(resources.EquiposResource, '/equipos')
     api.add_resource(resources.EquipoResource, '/equipo/<id>')
+    api.add_resource(resources.ApuestasResource, '/apuestas')
     api.init_app(app)
 
     return app

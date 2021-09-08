@@ -1,0 +1,1 @@
+from .partidos import PartidoService

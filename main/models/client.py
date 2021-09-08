@@ -3,6 +3,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 
 class Client(db.Model):
+    __tablename__ = "clients"
     __id = db.Column('id', db.Integer, primary_key = True)
     __nombre = db.Column('nombre', db.String(100), nullable = False)
     __apellido = db.Column('apellido', db.String(100), nullable = False)

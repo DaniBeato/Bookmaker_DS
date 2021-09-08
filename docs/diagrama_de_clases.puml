@@ -2,7 +2,7 @@
 class Cliente {
     - id
     - apellido
-    - nombre
+    - nombre 
     - email
 }
 
@@ -24,9 +24,9 @@ class Equipo {
 class Apuesta {
     - id
     - fecha
-    - monto
+    - monto 
     - monto_minimo
-    - equipo_ganador
+    - ganador
 }
 
 class Cuota {
@@ -47,15 +47,14 @@ class Partido {
     - goles_visitante
 }
 
-Partido *-- Equipo: equipo_local
-Partido *-- Equipo: equipo_visitante
-Cliente --> Apuesta: Realiza apuesta
+Partido --* Equipo: equipo local
+Partido --* Equipo: equipo visitante
+
+Cliente ---> Apuesta: realiza apuesta
 Cliente --|> Model
 Empresa --|> Model
 Equipo --|> Model
 Partido --|> Model
-Cuota -- Partido
-Apuesta --> Partido: Se realiza sobre
-Cuota --|> Model
 
+Apuesta --> Partido: se realiza sobre
 @enduml

@@ -6,7 +6,7 @@ class Apuesta(db.Model):
     __id = db.Column('id', db.Integer, primary_key = True)
     __fecha = db.Column('fecha', db.String(100), nullable = False)
     __monto = db.Column('monto', db.String(100), nullable = False)
-    __equipo_ganador = db.Column('equipo_ganador', db.ForeignKey('equipo.id')), nullable = False)
+    __equipo_ganador = db.Column('equipo_ganador', db.ForeignKey('equipo.id'), nullable = False)
 
     def __repr__(self):
         return f'< Cliente:  {self.__id} {self.__probabilidad_local} {self.__probabilidad_empate} {self.__probabilidad_visitante}>'
