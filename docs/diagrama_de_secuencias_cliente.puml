@@ -2,8 +2,11 @@
 actor Admin
 boundary ClienteResource
 participant ClienteSchema
+participant ClienteService
+participant RepositoryServices
 entity ClienteModel
 database data
+
 Admin -> ClienteResource: GET by Id (Request)
 activate ClienteResource
 ClienteResource -> ClienteModel: get_or_404() 

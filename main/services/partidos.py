@@ -1,8 +1,11 @@
 from .. import db
-from main.models import PartidoModel
+from main.models import PartidoModels
+from main.repositories import PartidoRepositorio
 
-
-class PartidoService:
+class PartidoServices():
     def obtener_partidos_no_finalizados(self):
-        partidos = db.session.query(PartidoModel).filter('finalizado' == False).all()
+        partidos = db.session.query(PartidoModels).filter('finalizado' == False).all()
         return partidos
+
+    def obtener_partidos(self):
+        return repositorio.find_all()

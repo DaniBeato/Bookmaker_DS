@@ -3,17 +3,18 @@ from flask import request
 from .. import db
 from main.models import EmpresaModels
 from main.map import EmpresaSchema
+from main.services import EmpresaServices
 
 
 
 empresa_schema = EmpresaSchema()
+empresa_service = EmpresaServices()
 
 
 
 class Empresas(Resource):
     def get(self):
-        empresas = db.session.query(EmpresaModels)
-        return empresa_schema.dump(empresas.all(), many = True)
+        return empresa_schema.dump(empresa_service.obtener_empresas(), many = True)
 
     def post(self):
         empresa = empresa_schema.load(request.get_json())

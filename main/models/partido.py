@@ -1,6 +1,6 @@
 from .. import db
 from sqlalchemy.ext.hybrid import hybrid_property
-from DateTime import datetime
+from datetime import datetime
 
 
 class Partido(db.Model):

@@ -3,16 +3,18 @@ from flask import request
 from .. import db
 from main.models import EquipoModels
 from main.map import EquipoSchema
+import logging
 
 
 
 equipo_schema = EquipoSchema()
-
+logger = logging.getLogger(__name__)
 
 
 class Equipos(Resource):
     def get(self):
         equipos = db.session.query(EquipoModels)
+        logger.info
         return equipo_schema.dump(equipos.all(), many = True)
 
     def post(self):
@@ -27,6 +29,7 @@ class Equipos(Resource):
 class Equipo(Resource):
     def get(self,id):
        equipo = db.session.query(EquipoModels).get_or_404(id)
+       logger.debug("Equipo: %s", equipo)
        return equipo_schema.dump(equipo.all(), many = True)
 
 
