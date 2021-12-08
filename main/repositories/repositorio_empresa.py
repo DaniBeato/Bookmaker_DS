@@ -1,10 +1,10 @@
 from flask.scaffold import F
 from .. import db
 from main.models import EmpresaModels
-from .repositorio_base import Create, Read, Update, Delete
+from main.repositories.repositorio_base import Crear, Leer, Modificar, Eliminar
 
 
-class EmpresaRepositorio(Create, Read, Update, Delete):
+class EmpresaRepositorio(Crear, Leer, Modificar, Eliminar):
     def __init__(self):
         self.__modelo = EmpresaModels
 
